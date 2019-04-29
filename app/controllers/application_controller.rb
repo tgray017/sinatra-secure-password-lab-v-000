@@ -59,6 +59,7 @@ class ApplicationController < Sinatra::Base
   end
   
   post "/withdraw" do
+    binding.pry
     @user = User.find(session[:user_id])
     if @user.balance > params[:withdrawal]
       @user.balance -= params[:withdrawal]

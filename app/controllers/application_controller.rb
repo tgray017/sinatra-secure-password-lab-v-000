@@ -62,7 +62,7 @@ class ApplicationController < Sinatra::Base
     binding.pry
     @user = User.find(session[:user_id])
     if @user.balance > params[:withdrawal].to_f
-      @user.balance -= params[:withdrawal]
+      @user.balance -= params[:withdrawal].to_f
       redirect "/account"
     else
       redirect "/failure"

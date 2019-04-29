@@ -1,0 +1,1 @@
+user1 = User.new(username: "tgray", password: "password", balance: 100)

@@ -58,7 +58,7 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
   
-  post "/withdrawal" do
+  post "/withdraw" do
     @user = User.find(session[:user_id])
     if @user.balance > params[:withdrawal]
       @user.balance -= params[:withdrawal]

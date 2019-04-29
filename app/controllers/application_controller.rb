@@ -71,7 +71,7 @@ class ApplicationController < Sinatra::Base
   
   post "/deposit" do
     @user = User.find(session[:user_id])
-    @user.balance += params[:withdrawal].to_f
+    @user.balance += params[:deposit].to_f
     @user.save
     redirect "/account"
   end

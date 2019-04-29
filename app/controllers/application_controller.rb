@@ -68,6 +68,17 @@ class ApplicationController < Sinatra::Base
       redirect "/failure"
     end
   end
+  
+  post "/withdraw" do
+    @user = User.find(session[:user_id])
+    if @user.balance > params[:withdrawal].to_f
+      @user.balance -= params[:withdrawal].to_f
+      @user.save
+      redirect "/account"
+    else
+      redirect "/failure"
+    end
+  end
 
   helpers do
     def logged_in?

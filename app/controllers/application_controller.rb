@@ -27,7 +27,6 @@ class ApplicationController < Sinatra::Base
 
   get "/account" do
     if logged_in?
-      binding.pry
       @user = User.find(session[:user_id])
       erb :account
     else
@@ -57,6 +56,16 @@ class ApplicationController < Sinatra::Base
   get "/logout" do
     session.clear
     redirect "/"
+  end
+  
+  post "/withdraw" do
+    @user = User.find(session[:user_id])
+    if @user.balance > params[:withdrawal]
+      @user.balance -= params[:withdrawal]
+      redirect "/account"
+    else
+      redirect "/failure"
+    end
   end
 
   helpers do
